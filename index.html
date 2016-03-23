@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<script>
+
+  var serversocket = new WebSocket("ws://127.0.0.1:8080/w");
+ 
+  serversocket.onopen = function() {
+    serversocket.send("Connection init");
+  }
+ 
+  // Write message on receive
+  serversocket.onmessage = function(e) {
+    document.getElementById('logs').innerHTML += e.data + "<br />";
+    window.scrollTo(0,document.body.scrollHeight);
+  };
+ 
+  function senddata() {
+    var data = document.getElementById('sendtext').value;
+    serversocket.send(data);
+    document.getElementById('logs').innerHTML += "Sent: " + data + "<br>";
+  }
+ 
+</script>
+ 
+</head>
+<body>
+  <div id='logs'></div>
+</body>
+</html>
