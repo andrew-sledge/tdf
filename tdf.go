@@ -11,7 +11,6 @@ import (
 var arg string = ""
 
 func WSServer(ws *websocket.Conn) {
-	fmt.Println(arg)
 	t, err := tail.TailFile(arg, tail.Config{Follow: true})
 	if err != nil {
 		fmt.Println(err)
